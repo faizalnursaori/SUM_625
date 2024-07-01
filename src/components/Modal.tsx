@@ -13,8 +13,9 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
       <div className="bg-white p-6 rounded-lg max-w-md">
         <h2 className="text-2xl font-bold mb-4">How to Play</h2>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Sum all the numbers. You can sum horizontally, vertically, or in any pattern.</li>
+          <li>Sum all the numbers.</li>
           <li>The goal is to reach a total sum of 625.</li>
+          <li>You can sum horizontally, vertically, or in any pattern.</li>
           <li>You can show the answer when the timer reaches 5 minutes.</li>
           <li>Clicking &quot;Show Answer&quot; means you give up.</li>
         </ol>
