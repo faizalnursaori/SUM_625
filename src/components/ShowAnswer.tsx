@@ -1,18 +1,41 @@
-import { useState } from "react";
+"use client";
 
-export const ShowAnswer = ({ totalSum }: { totalSum: number }) => {
-  const [isVisible, setIsVisible] = useState(false);
+import { useState, useEffect } from "react";
 
-  const handleClick = () => {
-    setIsVisible(true);
+type ShowAnswerProps = {
+  totalSum: number;
+  elapsedTime: number;
+};
+
+export const ShowAnswer = ({ totalSum, elapsedTime }: ShowAnswerProps) => {
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  useEffect(() => {
+    if (elapsedTime >= 300) {
+      setIsEnabled(true);
+    }
+  }, [elapsedTime]);
+
+  const handleShowAnswer = () => {
+    setShowAnswer(true);
   };
 
   return (
-    <div className="text-center mt-4">
-      <button onClick={handleClick} className="bg-red-500 text-white p-2 rounded">
+    <div className="mt-4">
+      <button
+        onClick={handleShowAnswer}
+        disabled={!isEnabled}
+        className={`px-4 py-2 rounded ${
+          isEnabled
+            ? "bg-blue-500 text-white hover:bg-blue-600"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}
+      >
         Show Answer
       </button>
-      {isVisible && <p className="mt-2 text-xl text-blue-500">{totalSum}</p>}
+      {showAnswer && <p className="mt-2 text-lg">The correct answer is: {totalSum}</p>}
+      {!isEnabled && <></>}
     </div>
   );
 };

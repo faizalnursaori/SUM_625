@@ -6,9 +6,10 @@ import { ShowAnswer } from "./ShowAnswer";
 
 type FieldAnswerProps = {
   setIsRunning: (value: boolean) => void;
+  elapsedTime: number;
 };
 
-export const FieldAnswer = ({ setIsRunning }: FieldAnswerProps) => {
+export const FieldAnswer = ({ setIsRunning, elapsedTime }: FieldAnswerProps) => {
   const { totalSum } = useTotalSum();
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
@@ -20,7 +21,7 @@ export const FieldAnswer = ({ setIsRunning }: FieldAnswerProps) => {
 
   const handleSubmit = () => {
     const correct = parseInt(answer) === totalSum;
-    setMessage(correct ? "Jawaban anda benar" : "Jawaban anda salah");
+    setMessage(correct ? "Your answer is correct." : "Your answer is wrong.");
     setIsCorrect(correct);
     if (correct) {
       setIsRunning(false);
@@ -42,7 +43,7 @@ export const FieldAnswer = ({ setIsRunning }: FieldAnswerProps) => {
       {message && (
         <p className={`mt-4 text-xl ${isCorrect ? "text-green-500" : "text-red-500"}`}>{message}</p>
       )}
-      <ShowAnswer totalSum={totalSum} />
+      <ShowAnswer totalSum={totalSum} elapsedTime={elapsedTime} />
     </div>
   );
 };

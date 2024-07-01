@@ -10,7 +10,7 @@ export const RandomNumber = () => {
 
   useEffect(() => {
     const shuffledNumbers = Array.from({ length: gridSize * gridSize }, () =>
-      Math.floor(Math.random() * 9)
+      Math.floor(Math.random() * 10)
     );
     setNumbers(shuffledNumbers);
   }, []);
